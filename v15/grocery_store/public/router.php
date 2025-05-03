@@ -37,7 +37,7 @@ if ($path === 'login-process' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 // =====================================================
 // Check if the request is for a test file (either with or without .php extension)
 $test_file = $path;
-if (!str_ends_with($test_file, '.php')) {
+if (substr($test_file, -4) !== '.php') {
     $test_file .= '.php';
 }
 
