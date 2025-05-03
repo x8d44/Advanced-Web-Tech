@@ -1,0 +1,82 @@
+grocery_store
+├── grocery_store.sql
+├── tests
+│   ├── db_structure_check.php
+│   ├── debug-cart-tool.php
+│   ├── direct_test_api.php
+│   ├── security_test.php
+│   ├── test.php
+│   ├── test_order.php
+│   ├── test_order_api0.php
+│   └── test_tables.php
+├── docs
+│   └── manager_api_docs.md
+├── config
+│   ├── config.php
+│   ├── database.php
+│   ├── errorlogger.php
+│   └── inputsanitizer.php
+├── logs
+│   └── app_2025-04-30.log
+├── controllers
+│   ├── CaptchaController.php
+│   ├── CartController.php
+│   ├── OrderController.php
+│   ├── ProductController.php
+│   └── UserController.php
+├── models
+│   ├── Captcha.php
+│   ├── Cart.php
+│   ├── Order.php
+│   ├── Product.php
+│   └── User.php
+├── public
+│   ├── api
+│   │   ├── captcha.php
+│   │   ├── cart.php
+│   │   ├── orders.php
+│   │   ├── products.php
+│   │   └── users.php
+│   ├── css
+│   │   └── style.css
+│   ├── images
+│   │   ├── captcha
+│   │   │   ├── image1.jpg
+│   │   │   ├── image2.jpg
+│   │   │   ├── image3.jpg
+│   │   │   └── image4.jpg
+│   │   └── products
+│   │       ├── beef.jpg
+│   │       ├── broccoli.jpg
+│   │       ├── carrots.jpg
+│   │       ├── chicken.jpg
+│   │       ├── fish.jpg
+│   │       ├── hero-grocery.jpg
+│   │       ├── meat-category.jpg
+│   │       ├── pork.jpg
+│   │       ├── potato.jpg
+│   │       └── vegetables-category.jpg
+│   ├── js
+│   │   ├── ajax.js
+│   │   ├── captcha.js
+│   │   ├── cart.js
+│   │   ├── components
+│   │   │   └── RegistrationForm.js
+│   │   ├── main.js
+│   │   └── products.js
+│   ├── index.php
+│   └── router.php
+└── views
+    ├── cart.php
+    ├── customer
+    │   ├── dashboard.php
+    │   └── edit_profile.php
+    ├── home.php
+    ├── login.php
+    ├── logout.php
+    ├── order_confirmation.php
+    ├── products.php
+    ├── register.php
+    └── shared
+        ├── footer.php
+        └── header.php
