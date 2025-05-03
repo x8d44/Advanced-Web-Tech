@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth < 992) {
                 e.preventDefault();
                 e.stopPropagation();
-                window.location.href = '/cart';
+                window.location.href = window.APP_URL + '/cart';
             }
         });
     }

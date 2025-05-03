@@ -82,7 +82,7 @@ function initCartPreview() {
                     
                     // Fetch latest cart data when opening dropdown
                     if (document.body.classList.contains('logged-in')) {
-                        fetch('/api/cart.php')
+                        fetch(window.APP_URL + '/api/cart.php')
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
@@ -135,7 +135,7 @@ function initAddToCartButtons() {
                 if (!isLoggedIn) {
                     // If not logged in, redirect to login
                     alert('Please login to add items to your cart');
-                    window.location.href = '/login';
+                    window.location.href = window.APP_URL + '/login';
                     return;
                 }
                 
@@ -144,7 +144,7 @@ function initAddToCartButtons() {
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
                 
                 // Send AJAX request to add item to cart
-                fetch('/api/cart.php?action=add', {
+                fetch(window.APP_URL + '/api/cart.php?action=add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -250,7 +250,7 @@ function updateItemQuantity() {
     row.classList.add('bg-light');
     
     // Update quantity on server
-    fetch('/api/cart.php?action=update', {
+    fetch(window.APP_URL + '/api/cart.php?action=update', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ function initRemoveItemHandlers() {
                 this.disabled = true;
                 
                 // Remove item from cart
-                fetch('/api/cart.php?action=remove', {
+                fetch(window.APP_URL + '/api/cart.php?action=remove', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -375,7 +375,7 @@ function initCheckoutButton() {
             console.log('Checkout button clicked - sending request to /api/cart.php?action=checkout');
             
             // Send checkout request
-            fetch('/api/cart.php?action=checkout', {
+            fetch(window.APP_URL + '/api/cart.php?action=checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -410,7 +410,7 @@ function initCheckoutButton() {
                     
                     // Redirect to order confirmation or dashboard
                     setTimeout(() => {
-                        window.location.href = data.redirect || '/customer/dashboard';
+                        window.location.href = data.redirect || window.APP_URL + '/customer/dashboard';
                     }, 1000);
                 } else {
                     // Reset button
@@ -494,7 +494,7 @@ function updateCartDisplay(cartData) {
             row.innerHTML = `
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="/images/products/${item.image_path}" alt="${item.product_name}" class="cart-item-image" width="50">
+                        <img src="${window.APP_URL}/images/products/${item.image_path}" alt="${item.product_name}" class="cart-item-image" width="50">
                         <div class="ms-3">
                             <h6 class="mb-0">${item.product_name}</h6>
                             <small class="text-muted">${item.category}</small>
@@ -550,7 +550,7 @@ function updateCartPreview(cartData) {
             cartPreviewBody.innerHTML = `
                 <div class="text-center p-3">
                     <p class="text-muted mb-2">Your cart is empty</p>
-                    <a href="/products" class="btn btn-sm btn-outline-success">Start Shopping</a>
+                    <a href="${window.APP_URL}/products" class="btn btn-sm btn-outline-success">Start Shopping</a>
                 </div>
             `;
             
@@ -562,7 +562,7 @@ function updateCartPreview(cartData) {
             // Update footer button
             if (cartPreviewFooterBtn) {
                 cartPreviewFooterBtn.textContent = 'Go to Cart';
-                cartPreviewFooterBtn.href = '/cart';
+                cartPreviewFooterBtn.href = window.APP_URL + '/cart';
             }
             
             return;
@@ -577,7 +577,7 @@ function updateCartPreview(cartData) {
             itemElement.className = 'cart-preview-item d-flex align-items-center mb-2 p-1 border-bottom';
             
             itemElement.innerHTML = `
-                <img src="/images/products/${item.image_path}" 
+                <img src="${window.APP_URL}/images/products/${item.image_path}"
                      alt="${item.product_name}"
                      class="cart-preview-img me-2" width="40" height="40">
                 <div class="cart-preview-details">
@@ -607,7 +607,7 @@ function updateCartPreview(cartData) {
         // Ensure footer button says "View Cart"
         if (cartPreviewFooterBtn) {
             cartPreviewFooterBtn.textContent = 'View Cart';
-            cartPreviewFooterBtn.href = '/cart';
+            cartPreviewFooterBtn.href = window.APP_URL + '/cart';
         }
     }
 }

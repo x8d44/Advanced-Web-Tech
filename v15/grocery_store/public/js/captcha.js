@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.disabled = true;
             
             // Fetch new CAPTCHA with proper error handling
-            fetch('/api/captcha.php?action=refresh')
+            fetch(window.APP_URL + '/api/captcha.php?action=refresh')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Server responded with status: ${response.status}`);
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     if (data && data.success && data.captcha) {
                         // Update image source
-                        captchaImage.src = '/images/captcha/' + data.captcha.image_path;
+                        captchaImage.src = window.APP_URL + '/images/captcha/' + data.captcha.image_path;
                         
                         // Store CAPTCHA ID in hidden field
                         const captchaIdField = document.getElementById('captcha_id');

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         // Prepare URL
-        let url = '/api/products.php';
+        let url = window.APP_URL + '/api/products.php';
         const params = new URLSearchParams();
         
         if (category) {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const productCard = `
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
                             <div class="card product-card h-100">
-                                <img src="/images/products/${product.image_path}" 
+                                <img src="${window.APP_URL}/images/products/${product.image_path}"
                                     class="card-img-top product-image" 
                                     alt="${product.product_name}">
                                 <div class="card-body">
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!isLoggedIn) {
                     // If not logged in, redirect to login
                     alert('Please login to add items to your cart');
-                    window.location.href = '/login';
+                    window.location.href = window.APP_URL + '/login';
                     return;
                 }
                 
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const productId = this.dataset.productId;
                 
                 // Send AJAX request
-                fetch('/api/cart.php?action=add', {
+                fetch(window.APP_URL + '/api/cart.php?action=add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!isLoggedIn) {
                     // If not logged in, redirect to login
                     alert('Please login to place an order');
-                    window.location.href = '/login';
+                    window.location.href = window.APP_URL + '/login';
                     return;
                 }
                 
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("Sending Buy Now request:", requestData);
                 
                 // Send AJAX request to place order directly
-                fetch('/api/orders.php', {
+                fetch(window.APP_URL + '/api/orders.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Redirect to order confirmation page
                         setTimeout(() => {
-                            window.location.href = `/order_confirmation?id=${data.order_id}`;
+                            window.location.href = `${window.APP_URL}/order_confirmation?id=${data.order_id}`;
                         }, 1500);
                     } else {
                         // Show error message
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 productNameSelect.disabled = false;
                 
                 // Fetch product names for this category
-                fetch(`/api/products.php?action=product_names&category=${encodeURIComponent(selectedCategory)}`)
+                fetch(`${window.APP_URL}/api/products.php?action=product_names&category=${encodeURIComponent(selectedCategory)}`)
                     .then(response => response.json())
                     .then(productNames => {
                         productNames.forEach(productName => {
@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 cartPreviewBody.innerHTML = `
                     <div class="text-center p-3">
                         <p class="text-muted mb-2">Your cart is empty</p>
-                        <a href="/products" class="btn btn-sm btn-outline-success">Start Shopping</a>
+                        <a href="${window.APP_URL}/products" class="btn btn-sm btn-outline-success">Start Shopping</a>
                     </div>
                 `;
                 
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update footer button
                 if (cartPreviewFooterBtn) {
                     cartPreviewFooterBtn.textContent = 'Go to Cart';
-                    cartPreviewFooterBtn.href = '/cart';
+                    cartPreviewFooterBtn.href = window.APP_URL + '/cart';
                 }
                 
                 return;
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 itemElement.className = 'cart-preview-item d-flex align-items-center mb-2 p-1 border-bottom';
                 
                 itemElement.innerHTML = `
-                    <img src="/images/products/${item.image_path}" 
+                    <img src="${window.APP_URL}/images/products/${item.image_path}"
                          alt="${item.product_name}"
                          class="cart-preview-img me-2" width="40" height="40">
                     <div class="cart-preview-details">
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Ensure footer button says "View Cart"
             if (cartPreviewFooterBtn) {
                 cartPreviewFooterBtn.textContent = 'View Cart';
-                cartPreviewFooterBtn.href = '/cart';
+                cartPreviewFooterBtn.href = window.APP_URL + '/cart';
             }
         }
     }

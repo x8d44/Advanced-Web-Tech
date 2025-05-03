@@ -41,7 +41,16 @@ set_exception_handler(function($exception) {
  * Define application-wide constants for paths, URLs, and settings
  */
 define('APP_NAME', 'Grocery Store');
-define('APP_URL', 'http://localhost:8000');
+// Determine scheme (http or https)
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+// Get host name
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost'; // Default to localhost if not set (e.g., CLI)
+// Determine the base path of the application dynamically
+// Assumes config.php is in /config, and public is one level up from config's parent
+$scriptDir = dirname(dirname($_SERVER['SCRIPT_NAME'])); // Get parent of the script's directory
+$basePath = rtrim($scriptDir, '/'); // Remove trailing slash if present
+// Construct the base URL
+define('APP_URL', $scheme . '://' . $host . $basePath);
 define('UPLOADS_DIR', __DIR__ . '/../public/images/products/');
 define('CAPTCHA_DIR', __DIR__ . '/../public/images/captcha/');
 

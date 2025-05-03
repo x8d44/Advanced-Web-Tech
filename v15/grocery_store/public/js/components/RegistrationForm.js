@@ -157,7 +157,7 @@ class RegistrationForm extends React.Component {
         formData.append('csrf_token', window.csrfToken);
         
         // Submit the form
-        fetch('/api/users.php', {
+        fetch(window.APP_URL + '/api/users.php', {
             method: 'POST',
             body: formData
         })
@@ -172,7 +172,7 @@ class RegistrationForm extends React.Component {
                 
                 // Redirect to appropriate page after successful registration
                 setTimeout(() => {
-                    window.location.href = data.redirect || '/login';
+                    window.location.href = data.redirect || window.APP_URL + '/login';
                 }, 1500);
             } else {
                 this.setState({
@@ -296,7 +296,7 @@ class RegistrationForm extends React.Component {
                 </div>
                 
                 <div className="text-center mt-3">
-                    <p>Already have an account? <a href="/login">Login here</a></p>
+                    <p>Already have an account? <a href={window.APP_URL + '/login'}>Login here</a></p>
                 </div>
             </form>
         );

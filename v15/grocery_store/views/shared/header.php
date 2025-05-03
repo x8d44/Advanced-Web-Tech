@@ -83,6 +83,11 @@ $current_path = getCurrentPagePath();
     <script>
         window.csrfToken = "<?= generate_csrf_token() ?>";
     </script>
+<!-- Make the base URL available to JavaScript -->
+    <script>
+      // Make the base URL available to JavaScript
+      window.APP_URL = "<?php echo rtrim(APP_URL, '/'); ?>";
+    </script>
 </head>
 <body class="<?= isset($_SESSION['user_id']) ? 'logged-in' : '' ?>">
     <!-- Optimized Navigation with Enhanced Accessibility -->
