@@ -1,11 +1,7 @@
 RewriteEngine On
 
-# Determine the RewriteBase automatically (more robust)
-RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
-RewriteRule ^(.*) - [E=BASE:%1]
-
-# Set RewriteBase
-RewriteBase %{ENV:BASE}
+# Hardcoded RewriteBase for testing
+RewriteBase /prin/y1d13/x8d44/Advanced-Web-Tech/v15/grocery_store/public/
 
 # Don't rewrite if the request is for an existing file or directory
 RewriteCond %{REQUEST_FILENAME} !-f
