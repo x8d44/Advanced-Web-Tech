@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Determine the RewriteBase automatically (more robust)
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+RewriteRule ^(.*) - [E=BASE:%1]
+
+# Set RewriteBase
+RewriteBase %{ENV:BASE}
+
+# Don't rewrite if the request is for an existing file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to index.php
+RewriteRule ^ index.php [L]
