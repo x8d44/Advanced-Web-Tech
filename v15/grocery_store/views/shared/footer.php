@@ -14,10 +14,10 @@
                         <?php
                         // Dynamic link generation with security and performance
                         $quickLinks = [
-                            ['url' => '/', 'label' => 'Home'],
-                            ['url' => '/products', 'label' => 'Products'],
-                            ['url' => '/register', 'label' => 'Register'],
-                            ['url' => '/login', 'label' => 'Login']
+                            ['url' => rtrim(APP_URL, '/') . '/', 'label' => 'Home'],
+                            ['url' => rtrim(APP_URL, '/') . '/products', 'label' => 'Products'],
+                            ['url' => rtrim(APP_URL, '/') . '/register', 'label' => 'Register'],
+                            ['url' => rtrim(APP_URL, '/') . '/login', 'label' => 'Login']
                         ];
                         
                         foreach ($quickLinks as $link) {
@@ -49,7 +49,7 @@
     
     <!-- Performance Optimized Script Loading -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="/js/main.js" defer></script>
+    <script src="<?php echo rtrim(APP_URL, '/'); ?>/js/main.js" defer></script>
     
     <script>
     // Accessibility and Mobile Handling
@@ -60,7 +60,7 @@
                 if (window.innerWidth < 992) {
                     e.preventDefault();
                     e.stopPropagation();
-                    window.location.href = '/cart';
+                    window.location.href = window.APP_URL + '/cart';
                 }
             });
         }

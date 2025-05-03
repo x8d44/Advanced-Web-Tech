@@ -68,7 +68,7 @@ if (in_array($_SERVER['SERVER_NAME'], $allowed_test_environments) ||
             echo "<ul>";
             foreach (scandir($tests_dir) as $file) {
                 if ($file != '.' && $file != '..' && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
-                    echo "<li><a href='/{$file}'>{$file}</a></li>";
+                    echo "<li><a href='" . rtrim(APP_URL, '/') . "/{$file}'>{$file}</a></li>";
                 }
             }
             echo "</ul>";

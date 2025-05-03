@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id'])) {
     $_SESSION['flash_type'] = "warning";
     
     // Secure redirect
-    header('Location: /login');
+    header('Location: ' . rtrim(APP_URL, '/') . '/login');
     exit;
 }
 
@@ -40,7 +40,7 @@ try {
     // User-friendly error handling
     $_SESSION['flash_message'] = "An error occurred while loading your cart. Please try again.";
     $_SESSION['flash_type'] = "danger";
-    header('Location: /products');
+    header('Location: ' . rtrim(APP_URL, '/') . '/products');
     exit;
 }
 
@@ -62,7 +62,7 @@ $itemCount = $cartData['item_count'] ?? 0;
             <p>You haven't added any products to your cart yet.</p>
             <hr>
             <p class="mb-0">
-                <a href="/products" class="alert-link">Browse our products</a> to start shopping.
+                <a href="<?php echo rtrim(APP_URL, '/'); ?>/products" class="alert-link">Browse our products</a> to start shopping.
             </p>
         </div>
 
@@ -84,7 +84,7 @@ $itemCount = $cartData['item_count'] ?? 0;
                             <tr data-cart-id="<?= htmlspecialchars($item['cart_id']) ?>">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="/images/products/<?= htmlspecialchars($item['image_path']) ?>" 
+                                        <img src="<?php echo rtrim(APP_URL, '/'); ?>/images/products/<?= htmlspecialchars($item['image_path']) ?>"
                                              alt="<?= htmlspecialchars($item['product_name']) ?>" 
                                              class="cart-item-image me-2">
                                         <div>
@@ -143,7 +143,7 @@ $itemCount = $cartData['item_count'] ?? 0;
     </div>
     <div class="card-footer">
         <div class="d-flex justify-content-between">
-            <a href="/products" class="btn btn-outline-secondary">
+            <a href="<?php echo rtrim(APP_URL, '/'); ?>/products" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>Continue Shopping
             </a>
             <button id="checkout-button" class="btn btn-success" 
@@ -156,7 +156,7 @@ $itemCount = $cartData['item_count'] ?? 0;
 </div>
 
 <!-- Performance Optimized Script Loading -->
-<script src="/js/cart.js" defer></script>
+<script src="<?php echo rtrim(APP_URL, '/'); ?>/js/cart.js" defer></script>
 
 <?php
 // Include footer

@@ -120,7 +120,7 @@ $selected_product = isset($_GET['product_name'])
 </div>
 
 <!-- Performance Optimized Script Loading -->
-<script src="/js/products.js" defer></script>
+<script src="<?php echo rtrim(APP_URL, '/'); ?>/js/products.js" defer></script>
 
 <?php
 // Include footer

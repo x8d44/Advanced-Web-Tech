@@ -50,7 +50,7 @@ try {
     $_SESSION['flash_type'] = "danger";
     
     // Redirect to a safe page
-    header('Location: /');
+    header('Location: ' . rtrim(APP_URL, '/') . '/');
     exit;
 }
 ?>
@@ -62,7 +62,7 @@ try {
                 <h1 class="m-0 h3">Login to Your Account</h1>
             </div>
             <div class="card-body">
-                <form id="login-form" action="/login-process" method="post" novalidate>
+                <form id="login-form" action="<?php echo rtrim(APP_URL, '/'); ?>/login-process" method="post" novalidate>
                     <!-- Security Tokens -->
                     <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">
                     <input type="hidden" name="action" value="login">
@@ -110,7 +110,7 @@ try {
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <?php if ($randomCaptcha): ?>
-                                    <img src="/images/captcha/<?= htmlspecialchars($randomCaptcha['image_path']) ?>" 
+                                    <img src="<?php echo rtrim(APP_URL, '/'); ?>/images/captcha/<?= htmlspecialchars($randomCaptcha['image_path']) ?>"
                                          alt="CAPTCHA Image" 
                                          class="img-fluid captcha-image" 
                                          aria-label="CAPTCHA Challenge">
@@ -153,7 +153,7 @@ try {
                 <div class="text-center mt-3">
                     <p>
                         Don't have an account? 
-                        <a href="/register" aria-label="Go to Registration Page">
+                        <a href="<?php echo rtrim(APP_URL, '/'); ?>/register" aria-label="Go to Registration Page">
                             Register here
                         </a>
                     </p>
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- CAPTCHA Refresh Script -->
-<script src="/js/captcha.js" defer></script>
+<script src="<?php echo rtrim(APP_URL, '/'); ?>/js/captcha.js" defer></script>
 
 <?php
 // Include footer

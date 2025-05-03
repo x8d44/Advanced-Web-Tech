@@ -1,13 +1,6 @@
 <?php
-// Calculate the base path dynamically
-$base_path = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-// Ensure base_path is not empty if script is at root, though unlikely here
-if ($base_path === '') {
-    $base_path = '/';
-} else {
-    // Add trailing slash if it's not the root
-     $base_path .= '/';
-}
+// Use APP_URL from config.php for consistent path handling
+$base_path = rtrim(APP_URL, '/') . '/';
 
 /**
  * Header Template for Grocery Store Web Application
@@ -77,7 +70,7 @@ $current_path = getCurrentPagePath();
     <!-- CSS Resources -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo $base_path; ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo rtrim(APP_URL, '/'); ?>/css/style.css">
     
     <!-- Security: Generate CSRF Token for JavaScript -->
     <script>
@@ -93,7 +86,7 @@ $current_path = getCurrentPagePath();
     <!-- Optimized Navigation with Enhanced Accessibility -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success" aria-label="Main Navigation">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="<?php echo $base_path; ?>" aria-label="Home">
+            <a class="navbar-brand d-flex align-items-center" href="<?php echo rtrim(APP_URL, '/'); ?>/" aria-label="Home">
                 <i class="fas fa-shopping-basket me-2" aria-hidden="true"></i>
                 <?= htmlspecialchars(APP_NAME) ?>
             </a>
@@ -107,12 +100,12 @@ $current_path = getCurrentPagePath();
                 <!-- Left Navigation Menu -->
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link <?= $current_path === '' ? 'active' : '' ?>" href="<?php echo $base_path; ?>">
+                        <a class="nav-link <?= $current_path === '' ? 'active' : '' ?>" href="<?php echo rtrim(APP_URL, '/'); ?>/">
                             <i class="fas fa-home me-1" aria-hidden="true"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $current_path === 'products' ? 'active' : '' ?>" href="<?php echo $base_path; ?>products">
+                        <a class="nav-link <?= $current_path === 'products' ? 'active' : '' ?>" href="<?php echo rtrim(APP_URL, '/'); ?>/products">
                             <i class="fas fa-apple-alt me-1" aria-hidden="true"></i> Products
                         </a>
                     </li>
@@ -138,12 +131,12 @@ $current_path = getCurrentPagePath();
                                         <?php if (empty($cart_items)): ?>
                                             <div class="text-center p-3">
                                                 <p class="text-muted mb-2">Your cart is empty</p>
-                                                <a href="<?php echo $base_path; ?>products" class="btn btn-sm btn-outline-success">Start Shopping</a>
+                                                <a href="<?php echo rtrim(APP_URL, '/'); ?>/products" class="btn btn-sm btn-outline-success">Start Shopping</a>
                                             </div>
                                         <?php else: ?>
                                             <?php foreach(array_slice($cart_items, 0, 3) as $item): ?>
                                                 <div class="cart-preview-item d-flex align-items-center mb-2 p-1 border-bottom">
-                                                    <img src="<?php echo $base_path; ?>images/products/<?= htmlspecialchars($item['image_path']) ?>"
+                                                    <img src="<?php echo rtrim(APP_URL, '/'); ?>/images/products/<?= htmlspecialchars($item['image_path']) ?>"
                                                         alt="<?= htmlspecialchars($item['product_name']) ?>"
                                                         class="cart-preview-img me-2" width="40" height="40">
                                                     <div class="cart-preview-details">
@@ -161,7 +154,7 @@ $current_path = getCurrentPagePath();
                                         <?php endif; ?>
                                     </div>
                                     <div class="card-footer cart-preview-footer bg-light p-2">
-                                        <a href="<?php echo $base_path; ?>cart" class="btn btn-success btn-sm w-100">
+                                        <a href="<?php echo rtrim(APP_URL, '/'); ?>/cart" class="btn btn-success btn-sm w-100">
                                             <?= empty($cart_items) ? 'Go to Cart' : 'View Cart' ?>
                                         </a>
                                     </div>
@@ -177,18 +170,18 @@ $current_path = getCurrentPagePath();
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="<?php echo $base_path; ?>customer/dashboard">
+                                    <a class="dropdown-item" href="<?php echo rtrim(APP_URL, '/'); ?>/customer/dashboard">
                                         <i class="fas fa-tachometer-alt me-2" aria-hidden="true"></i>Dashboard
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?php echo $base_path; ?>customer/edit_profile">
+                                    <a class="dropdown-item" href="<?php echo rtrim(APP_URL, '/'); ?>/customer/edit_profile">
                                         <i class="fas fa-user-edit me-2" aria-hidden="true"></i>Edit Profile
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item" href="<?php echo $base_path; ?>logout">
+                                    <a class="dropdown-item" href="<?php echo rtrim(APP_URL, '/'); ?>/logout">
                                         <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Logout
                                     </a>
                                 </li>
@@ -196,12 +189,12 @@ $current_path = getCurrentPagePath();
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a href="<?php echo $base_path; ?>login" class="btn btn-outline-light me-2">
+                            <a href="<?php echo rtrim(APP_URL, '/'); ?>/login" class="btn btn-outline-light me-2">
                                 <i class="fas fa-sign-in-alt me-1" aria-hidden="true"></i> Login
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $base_path; ?>register" class="btn btn-light">
+                            <a href="<?php echo rtrim(APP_URL, '/'); ?>/register" class="btn btn-light">
                                 <i class="fas fa-user-plus me-1" aria-hidden="true"></i> Register
                             </a>
                         </li>

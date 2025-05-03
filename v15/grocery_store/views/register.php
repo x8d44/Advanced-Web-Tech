@@ -49,7 +49,7 @@ require_once __DIR__ . '/shared/header.php';
 <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
 
 <!-- Registration Form Component -->
-<script src="/js/components/RegistrationForm.js" type="text/babel" defer></script>
+<script src="<?php echo rtrim(APP_URL, '/'); ?>/js/components/RegistrationForm.js" type="text/babel" defer></script>
 
 <?php
 // Include footer

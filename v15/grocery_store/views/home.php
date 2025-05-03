@@ -33,7 +33,7 @@ $pageSections = [
         'title' => 'Fresh Groceries Delivered to Your Door',
         'description' => 'Browse our selection of fresh vegetables and quality meat products.',
         'cta_text' => 'Shop Now',
-        'cta_link' => '/products'
+        'cta_link' => rtrim(APP_URL, '/') . '/products'
     ],
     'categories' => [
         ['name' => 'Vegetables', 'description' => 'Fresh, organic vegetables sourced from local farms.'],
@@ -88,14 +88,14 @@ $pageSections = [
     <?php foreach ($pageSections['categories'] as $category): ?>
         <div class="col-md-6">
             <div class="card mb-4 shadow-sm">
-                <img src="/images/products/<?= strtolower($category['name']) ?>-category.jpg" 
+                <img src="<?php echo rtrim(APP_URL, '/'); ?>/images/products/<?= strtolower($category['name']) ?>-category.jpg"
                      alt="<?= htmlspecialchars($category['name']) ?> Category" 
                      class="card-img-top category-img" 
                      loading="lazy">
                 <div class="card-body">
                     <h3 class="card-title"><?= htmlspecialchars($category['name']) ?></h3>
                     <p class="card-text"><?= htmlspecialchars($category['description']) ?></p>
-                    <a href="/products?category=<?= urlencode($category['name']) ?>" 
+                    <a href="<?php echo rtrim(APP_URL, '/'); ?>/products?category=<?= urlencode($category['name']) ?>"
                        class="btn btn-outline-success" 
                        aria-label="Browse <?= htmlspecialchars($category['name']) ?>">
                         Browse <?= htmlspecialchars($category['name']) ?>
